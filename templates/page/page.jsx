@@ -1,0 +1,3 @@
+class page {
+    'hi, <%=name%>.'
+}
