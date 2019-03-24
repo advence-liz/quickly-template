@@ -4,16 +4,16 @@ const path = require('path')
 let context = process.cwd()
 let config = {}
 try {
-    const configFilePath = findup('./qt.config.js')
+    const configFilePath = findup('qt.config.js')
     context = path.dirname(configFilePath)
-    debug(configFilePath)
+    debug('context',context)
     config = require(path.resolve(configFilePath))
 } catch (error) {
     debug(error)
 }
 
 module.exports = {
-    ...{ root: 'templates', rename: false },
+    ...{ rename: false },
     context,
     ...config
 }

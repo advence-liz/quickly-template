@@ -27,6 +27,7 @@
   "homepage": "https://github.com/advence-liz/quickly-template#readme",
   "dependencies": {
     "art-template": "^4.13.2",
+    "chalk": "^2.4.2",
     "debug": "^4.1.1",
     "findup-sync": "^3.0.0",
     "glob": "^7.1.3",
