@@ -12,8 +12,8 @@ const argv = yargs
     .config('config', function(configPath) {
         return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
     })
-    .option('root', { type: 'string', description: '模板所在根目录' })
-    .option('context', { type: 'string' })
+    .option('root', { type: 'string', description: '模板所在根目录,相对目录' })
+    .option('context', { type: 'string',description :'基于context来获取root的绝对路径，默认为`qt.config.js`所在根目录'})
     .option('template', { type: 'string' })
     .option('name', { type: 'string' })
     .option('rename', { type: 'boolean', default: false })
