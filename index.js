@@ -38,26 +38,25 @@ const argv = yargs
             '为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定'
     })
     .demandOption('root')
-    .command('new <template> <name> [target]','new <template> <name> [target]', {}, createTemplate)
     .epilogue(
         'for more information, find our manual at https://github.com/advence-liz/quickly-template'
     )
     .fail(function(msg, err, yargs) {
         if (err) throw err // preserve stack
-        console.error(
-            red(`
-        You broke it!
-        ${msg}
-        You should be doing
-        `)
-        )
-
+        console.error(red(`${msg}`))
         console.log(yargs.help())
         process.exit(1)
     })
+
+    .command(
+        'new <template> <name> [target]',
+        'new <template> <name> [target]',
+        {},
+        createTemplate
+    )
     .command(
         '$0',
-        'qt new <template> <name> [target]',
+        'usage: qt new <template> <name> [target]',
         () => {},
         argv => {
             yargs.showHelp()
@@ -65,7 +64,18 @@ const argv = yargs
             console.log(blue(findTemplate(argv).join('\n')))
         }
     )
+    .example('$0 new page test', '以page为模板创建一个test模块')
+
     .help('help')
     .alias('help', 'h').argv
 
 debug(argv)
+
+process.on('uncaughtException', err => {
+    console.info(err)
+    process.exit(1)
+})
+process.on('unhandledRejection', err => {
+    console.info(err)
+    process.exit(1)
+})
