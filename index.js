@@ -1,29 +1,44 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const yargs = require('yargs')
-const glob = require('glob')
-const path = require('path')
-const { red } = require('chalk')
+const { red, blue, green } = require('chalk')
 const debug = require('debug')('qt:cli')
 const createTemplate = require('./lib/createTemplate')
+const { findTemplate } = require('./lib/template')
 const config = require('./config.js')
 const argv = yargs
     .config(config)
-    .config('config', function(configPath) {
+    .config('config', '配置文件所在位置', function(configPath) {
         return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
     })
-    .option('root', { type: 'string', description: '模板所在根目录,相对目录' })
-    .option('context', { type: 'string',description :'基于context来获取root的绝对路径，默认为`qt.config.js`所在根目录'})
-    .option('template', { type: 'string' })
-    .option('name', { type: 'string' })
-    .option('rename', { type: 'boolean', default: false })
+    .option('root', {
+        type: 'string',
+        description: '模板所在根目录,相对目录,基于context来获取root的绝对路径，'
+    })
+    .option('context', {
+        type: 'string',
+        description:
+            '默认为process.cwd(), 如果文件qt.config.js存在则为配置文件所在根目录(推荐使用配置文件)'
+    })
+    .option('target', {
+        type: 'string',
+        default: '',
+        description: '新生成模块的输出路径，相对路径，默认为process.cwd()'
+    })
+    .option('template', {
+        type: 'string',
+        description:
+            '当前使用的模板，模板可选范围即root下面指定的模板，支持简写即当前有模板page那么p,pa,pag等效'
+    })
+    .option('name', { type: 'string', description: '新生成模块的名称' })
+    .option('rename', {
+        type: 'boolean',
+        default: false,
+        description:
+            '为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定'
+    })
     .demandOption('root')
-    .command(
-        'new <template> <name>',
-        'new <template> <name>',
-        {},
-        createTemplate
-    )
+    .command('new <template> <name> [target]','new <template> <name> [target]', {}, createTemplate)
     .epilogue(
         'for more information, find our manual at https://github.com/advence-liz/quickly-template'
     )
@@ -42,24 +57,15 @@ const argv = yargs
     })
     .command(
         '$0',
-        'qt new <template> <name>',
+        'qt new <template> <name> [target]',
         () => {},
         argv => {
             yargs.showHelp()
-            console.log('current template:')
-            console.log(findTemplate(argv).join('\n'))
+            console.log(green('当前检测到的可用模板:'))
+            console.log(blue(findTemplate(argv).join('\n')))
         }
     )
     .help('help')
     .alias('help', 'h').argv
 
 debug(argv)
-
-function findTemplate(argv) {
-    const { root, context } = argv
-
-    return glob.sync(path.join(context, root, '*')).map(filePath => {
-        const templateName = path.parse(filePath).name
-        return `qt new  ${templateName} new new${templateName}`
-    })
-}
