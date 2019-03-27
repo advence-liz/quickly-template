@@ -1,1 +1,1 @@
-const name ='hi, <%=name%>.'
+const name ='hi, {{name | pascal}}'
