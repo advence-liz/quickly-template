@@ -1,3 +1,3 @@
-module.exports={
-    root:'_template'
+module.exports = {
+    root: '_template'
 }

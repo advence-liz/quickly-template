@@ -16,15 +16,37 @@
 
 ```jsx
 class page {
-    'hi, <%=name%>.'
+    'hi, {{name}}'
+     'hi, {{name|pascal}}'
 }
 ```
 
 ```jsx
 class page {
     'hi, newPage.'
+    'hi, NewPage.'
 }
 ```
+
+## 默认支持的 art-template filter
+
+除了pascal是我写的其他都是引用lodash的
+
+- pascal
+- camelCase
+- capitalize
+- lowerCase
+- lowerFirst
+- startCase
+- toLower
+- toUpper
+- trim
+- trimEnd
+- trimStart
+- escape
+- unescape
+- upperCase
+- upperFirst
 
 ## API
 

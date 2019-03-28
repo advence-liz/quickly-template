@@ -13,7 +13,7 @@ try {
 }
 
 module.exports = {
-    ...{ rename: false },
+    ...{ rename: false ,filter:{}},
     context,
     ...config
 }
