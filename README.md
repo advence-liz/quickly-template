@@ -78,7 +78,7 @@ usage: qt new <template> <name> [target]
 
 Options:
   --version   Show version number                                      [boolean]
-  --config    配置文件所在位置
+  --config    配置文件所在位置                                  [string] [default:'qt.config.js']
   --root      模板所在根目录,相对目录,基于context来获取root的绝对路径，
                                                              [string] [required]
   --context   默认为process.cwd(), 如果文件qt.config.js存在则为配置文件所在根目录(推荐使用配置文件)
