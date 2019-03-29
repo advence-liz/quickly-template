@@ -4,7 +4,7 @@
 
 ## 安装
 
-`$ npm i quickly-template`
+`$ npm i quickly-template -g`
 
 ## 命令概览
 
