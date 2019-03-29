@@ -18,12 +18,16 @@
 
 ## 模板使用[art-tempate](https://github.com/aui/art-template)编译
 
+### 编译前
+
 ```jsx
 class page {
     'hi, {{name}}'
      'hi, {{name|pascal}}'
 }
 ```
+
+### 编译后
 
 ```jsx
 class page {
@@ -48,7 +52,7 @@ module.exports = {
 
 ## 默认支持的 art-template filter
 
-除了pascal是我写的其他都是引用lodash的
+除了pascal是我写的其他都是引用lodash的,具体用法参见lodash
 
 - pascal
 - camelCase
