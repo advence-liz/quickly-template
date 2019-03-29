@@ -12,7 +12,7 @@
 
 **详见DEMO**`/example/`
 
-## 模板支持[art-tempate](https://github.com/aui/art-template)编译
+## 模板使用[art-tempate](https://github.com/aui/art-template)编译
 
 ```jsx
 class page {
@@ -26,6 +26,20 @@ class page {
     'hi, newPage.'
     'hi, NewPage.'
 }
+```
+
+## 向art-template 传入数据源
+
+目前只提供一种方式像模板传入数据源，即编辑`qt.config.js`,如下面的例子就是向`page`模板传入数据源`{v:1}`此外数据默认会包含name属性，所以最终传入的数据源为`{v:1,name:xxx}`
+
+```js
+module.exports = {
+    root: '_template',
+    filter: {
+        page: { v: 1 }
+    }
+}
+
 ```
 
 ## 默认支持的 art-template filter
@@ -50,8 +64,8 @@ class page {
 
 ## API
 
-```
 
+```
 usage: qt new <template> <name> [target]
 
 Options:

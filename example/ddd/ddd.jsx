@@ -1,3 +1,0 @@
-class page {
-    'hi, ddd.'
-}
