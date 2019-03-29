@@ -2,6 +2,10 @@
 
 一个根据已有模板快速生成新的模块的命令行工具
 
+## 安装
+
+`$ npm i quickly-template`
+
 ## 命令概览
 
 `$ qt new <template> <name> [target]`
