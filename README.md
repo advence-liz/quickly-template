@@ -70,8 +70,51 @@ module.exports = {
 - upperCase
 - upperFirst
 
-## API
+## 针对具体模板文件的特殊配置
 
+假设有模板文件名为`some-file[target=page][rename=false]`相当于对此模板文件配置`target`和`rename`参数，并且优先级高于命令行传入的参数，目前支持这俩个配置
+
+### rename 用法例子
+
+#### 模板目录结构
+
++ some-template
+  - page.js
+  - page.jsx
+  + stroes
+    - store[rename=false].js
+    - server[rename=false].js
+
+#### 执行`$qt new some-template newPage --rename`生成
+
++ newPage
+  - newPage.js
+  - newPage.jsx
+  + stroes
+    - store.js
+    - server.js
+
+### target 用法例子
+
+指定模板文件输出到不同的目录下
+
+#### 模板目录结构
+
++ some-tempalte
+  - action[target=action].js
+  - reducer[target=reducer].js
+  - index.js
+
+#### 执行`$qt new some-tempalte newPage`生成
+
++ some-tempalte
+  + action
+    - action.js
+  + reducer
+    - reducer.js
+  - index.js
+
+## API
 
 ```
 usage: qt new <template> <name> [target]
@@ -88,7 +131,7 @@ Options:
   --template  当前使用的模板，模板可选范围即root下面指定的模板，支持简写即当前有模板page那么p,pa,pag等效
                                                                         [string]
   --name      新生成模块的名称                                          [string]
-  --rename    为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定
+  --rename,-r    为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定
                                                       [boolean] [default: false]
   --help, -h  Show help                                                [boolean]
   

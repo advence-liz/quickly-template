@@ -1,3 +1,3 @@
 const name ='hi, NewPage'
 const name ='hi, 1'
-const name ='hi, newPage'
+const name ='hi, new-page'
