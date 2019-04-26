@@ -1,12 +1,12 @@
 # qt demo
 
-- `_template`为模板存放的位置，DMEO中两个模板`page`和`component`
-- `pages` page的存放目录
-- `components` component的存放目录
-- `qt.config.js` 配置文件主要就配置了`root`参加即查找模板的位置
+- `_template`为模板存放的位置你可以添加任意规模的模板
+- `qt.config.js` 配置文件主要就配置了`root`参数即查找模板的位置
 
-## 命令示意
+## 命令概览
 
-- `$ qt new page test` 就会在当前目录创建一个名为test 的模块，并且配置可以简写即`$ qt new p test`,`$ qt new pa test` 同样有效
+`$ qt new <template> <name> [target]`
 
-- `$ qt new page test pages`同时也可以指定输出模块的位置，这样`test`将创建在`pages`目录内
+- `$ qt new page new-page` 以`page`为模板创建一下新模块`new-page`并输出到当前目录
+- `$ qt new pa new-page` 同样是以`page`为模板创建一下新模块`new-page`并输出到当前目录，因为`template`支持简写形式，简写只要满足`startsWith`就会认为其相等的
+- `$ qt new page new-page pages` 以`page`为模板创建一下新模块`new-page`并输出到`pages`目录

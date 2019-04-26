@@ -1,6 +1,7 @@
 # quickly-template
 
-一个根据已有模板快速生成新的模块的命令行工具
+一个根据已有模板快速生成新的模块的命令行工具，为了解决开发中手动复制粘贴的问题，并且模板是可以动态的添加和设置，
+可以满足目前常见的模式`rudux` 小程序 `react` `vue` 都可以。
 
 ## 安装
 
@@ -14,7 +15,7 @@
 - `$ qt new pa new-page` 同样是以`page`为模板创建一下新模块`new-page`并输出到当前目录，因为`template`支持简写形式，简写只要满足`startsWith`就会认为其相等的
 - `$ qt new page new-page pages` 以`page`为模板创建一下新模块`new-page`并输出到`pages`目录
 
-**详见DEMO**`/example/`
+## 用法详见`/example/`
 
 ## 模板使用[art-tempate](https://github.com/aui/art-template)编译
 
