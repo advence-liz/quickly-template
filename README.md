@@ -120,20 +120,14 @@ module.exports = {
 ```
 usage: qt new <template> <name> [target]
 
-Options:
-  --version   Show version number                                      [boolean]
-  --config    配置文件所在位置                                  [string] [default:'qt.config.js']
-  --root      模板所在根目录,相对目录,基于context来获取root的绝对路径，
-                                                             [string] [required]
-  --context   默认为process.cwd(), 如果文件qt.config.js存在则为配置文件所在根目录(推荐使用配置文件)
-                                                                        [string]
-  --target    新生成模块的输出路径，相对路径，默认为process.cwd()
-                                                          [string] [default: ""]
-  --template  当前使用的模板，模板可选范围即root下面指定的模板，支持简写即当前有模板page那么p,pa,pag等效
-                                                                        [string]
-  --name      新生成模块的名称                                          [string]
-  --rename,-r    为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定
-                                                      [boolean] [default: false]
-  --help, -h  Show help                                                [boolean]
-  
+选项：
+  --version     显示版本号                       [布尔]
+  --config      配置文件所在位置
+  --root        模板所在根目录,相对目录,基于context来获取root的绝对路径，默认值"_template"[字符串] [默认值: "_template"]
+  --context     qt.config.js文件所在目录 > 优先级package.json所在目录 >process.cwd()                  [字符串]
+  --target      新生成模块的输出路径，相对process.cwd(),默认"." [字符串] [默认值: "."]
+  --template    当前使用的模板，模板可选范围即root下面指定的模板，支持简写即当前有模板page那么p,pa,pag等效             [字符串]
+  --name        新生成模块的名称               [字符串]
+  --rename, -r  为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定 [布尔] [默认值: false]
+  --help, -h    显示帮助信息                     [布尔]
   ```

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs')
+const path = require('path')
 const yargs = require('yargs')
 const { red, blue, green } = require('chalk')
 const debug = require('debug')('qt:cli')
@@ -13,17 +14,19 @@ const argv = yargs
     })
     .option('root', {
         type: 'string',
-        description: '模板所在根目录,相对目录,基于context来获取root的绝对路径，'
+        description:
+            '模板所在根目录,相对目录,基于context来获取root的绝对路径，默认值"_template"',
+        default: '_template'
     })
     .option('context', {
         type: 'string',
         description:
-            '默认为process.cwd(), 如果文件qt.config.js存在则为配置文件所在根目录(推荐使用配置文件)'
+            'qt.config.js文件所在目录 > 优先级package.json所在目录 > process.cwd()'
     })
     .option('target', {
         type: 'string',
-        default: '',
-        description: '新生成模块的输出路径，相对路径，默认为process.cwd()'
+        default: '.',
+        description: '新生成模块的输出路径，相对process.cwd(),默认"."'
     })
     .option('template', {
         type: 'string',
@@ -38,7 +41,7 @@ const argv = yargs
         description:
             '为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定'
     })
-    .demandOption('root')
+    // .demandOption('root')
     .epilogue(
         'for more information, find our manual at https://github.com/advence-liz/quickly-template'
     )
@@ -61,8 +64,17 @@ const argv = yargs
         () => {},
         argv => {
             yargs.showHelp()
-            console.log(green('当前检测到的可用模板:'))
-            console.log(blue(findTemplate(argv).join('\n')))
+            const { context, root } = argv
+            const templates = findTemplate(argv)
+            let warningMessage = red(
+                '请核对context与root配置确定对应路径下是否存在模板!'
+            )
+            console.info(
+                green(`在${blue(path.join(context, root))}目录下检测可用模板:`)
+            )
+            console.info(
+                templates.length ? blue(templates.join('\n')) : warningMessage
+            )
         }
     )
     .example('$0 new page test', '以page为模板创建一个test模块')
