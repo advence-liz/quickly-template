@@ -39,7 +39,7 @@ const argv = yargs
         default: false,
         alias: 'r',
         description:
-            '为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致，目前有默认检测功能所以也无需手动指定'
+            '为了兼容微信小程序的形式新生成的模块目录下面的文件名字是否全部改变为跟新模块一致'
     })
     // .demandOption('root')
     .epilogue(
