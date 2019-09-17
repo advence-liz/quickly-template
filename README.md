@@ -1,7 +1,7 @@
 # quickly-template
 
 一个根据已有模板快速生成新的模块的命令行工具，为了解决开发中手动复制粘贴的问题，并且模板是可以动态的添加和设置，
-可以满足目前常见的模式`rudux` 小程序 `react` `vue` 都可以。
+可以满足目前常见的模式`redux` 小程序 `react` `vue` 都可以。
 
 ## 安装
 
@@ -25,6 +25,7 @@
 class page {
     'hi, {{name}}'
      'hi, {{name|pascal}}'
+     'hi, {{dirname|pascal}}'
 }
 ```
 
@@ -33,6 +34,7 @@ class page {
 ```jsx
 class page {
     'hi, newPage.'
+    'hi, NewPage.'
     'hi, NewPage.'
 }
 ```
@@ -82,7 +84,7 @@ module.exports = {
 + some-template
   - page.js
   - page.jsx
-  + stroes
+  + stores
     - store[rename=false].js
     - server[rename=false].js
 
@@ -91,7 +93,7 @@ module.exports = {
 + newPage
   - newPage.js
   - newPage.jsx
-  + stroes
+  + stores
     - store.js
     - server.js
 
